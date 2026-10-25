@@ -351,6 +351,7 @@
           <h3>נהלים וחוזרי מנכ"ל</h3>
           <ul>
             <li><a href="https://apps.education.gov.il/mankal/horaa.aspx?siduri=81" target="_blank" rel="noopener">🔗 חוזר מנכ"ל - התפתחות אישית</a></li>
+            <li><a href="https://apps.education.gov.il/mankal/horaa.aspx?siduri=612" target="_blank" rel="noopener">🔗 חוזר מנכ"ל חדש (7.10.26) - התפתחות אישית ומעורבות חברתית, לשכבה י' תשפ"ז ואילך</a></li>
             <li><a href="https://apps.education.gov.il/Mankal/horaa.aspx?siduri=350" target="_blank" rel="noopener">🔗 חוזר מנכ"ל - נוהל הסדרה</a></li>
             <li><a href="https://drive.google.com/file/d/1cOAAByh6QBwXMfS__5YIMKG-cZGXDbn8/view?usp=sharing" target="_blank" rel="noopener">🔗 נוהל 12 - הפעלת מתנדבים בשעת חירום</a></li>
             <li><a href="https://drive.google.com/file/d/1Nl8HdjOsSaSTyr-HHfkWEMvFYOOEZsLb/view?usp=sharing" target="_blank" rel="noopener">🔗 הנחיות והתאמות - חרבות ברזל</a></li>
@@ -381,6 +382,8 @@
             <li><a href="https://padlet.com/inbalinbar1/padlet-idmh9f3yq9gh/wish/Xb8YaLMn6n5xQyn1" target="_blank" rel="noopener">🔗 חידון התנ"ך</a></li>
             <li><a href="https://padlet.com/inbalinbar1/padlet-idmh9f3yq9gh/wish/do3MQJYLDmq6a15w" target="_blank" rel="noopener">🔗 מגמת חילוץ והצלה</a></li>
             <li><a href="https://padlet.com/inbalinbar1/padlet-idmh9f3yq9gh/wish/Xb8YaL2R7lpeZyn1" target="_blank" rel="noopener">🔗 מגמות טכנולוגיות</a></li>
+            <li><a href="https://meyda.education.gov.il/files/noar/0000016440.pdf" target="_blank" rel="noopener">🔗 תוכנית מגמת תקשורת ומדיה</a></li>
+            <li><a href="https://meyda.education.gov.il/files/noar/0000016442.pdf" target="_blank" rel="noopener">🔗 תוכנית מגמת קולנוע ומדיה</a></li>
           </ul>
         </div>
       </div>
@@ -609,7 +612,10 @@ function renderSection(section){
 
 function gradeBadgesHtml(item, accent){
   if(!item.grades || item.grades.length === 0) return '';
-  return `<span class="grade-badges">${item.grades.map(g => `<span class="grade-badge" style="border-color:${accent};color:${accent};">${escapeHtml(g)}</span>`).join('')}</span>`;
+  const gradesToShow = (gradeFilter && gradeFilter !== 'כללי' && item.grades.includes(gradeFilter))
+    ? [gradeFilter]
+    : item.grades;
+  return `<span class="grade-badges">${gradesToShow.map(g => `<span class="grade-badge" style="border-color:${accent};color:${accent};">${escapeHtml(g)}</span>`).join('')}</span>`;
 }
 
 function renderRow(section, item){
